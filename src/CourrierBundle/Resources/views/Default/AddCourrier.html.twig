@@ -1,0 +1,144 @@
+{% extends 'template.html.twig' %}
+
+
+{% block body %}
+
+    <style>
+        .form{
+            display: inline-block;
+            text-align: center;
+        }
+    </style>
+
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col"></div>
+        <div class="mdl-cell mdl-cell--4-col">
+
+
+            {{ form_start(form, {'attr': {'class':'form'}}) }}
+
+            {{ form_errors(form) }}
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.auteur, "Receptioniste", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.auteur) }}
+                {{ form_widget(form.auteur, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.title, "Titre", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.title) }}
+                {{ form_widget(form.title, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.description, "Description", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.description) }}
+                {{ form_widget(form.description, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+            </br>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.position, "Rangement", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.position) }}
+                {{ form_widget(form.position, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.genre, "Genre", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.genre) }}
+                {{ form_widget(form.genre, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+
+            <div>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1" style="margin-right:20px;">
+                <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1"  onclick="hideexterne()">
+                <span class="mdl-radio__label">Interne</span>
+            </label>
+
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2" onclick="hideinterne()">
+                <span class="mdl-radio__label">Client externe</span>
+            </label>
+
+            </div>
+            <div id="clientexterne" style="display:none">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.client.nomclient, "Nom du destinataire", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.client.nomclient) }}
+                {{ form_widget(form.client.nomclient, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.client.prenomclient, "Prénom du destinataire", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.client.prenomclient) }}
+                {{ form_widget(form.client.prenomclient, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.client.societeclient, "Société du destinataire", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.client.societeclient) }}
+                {{ form_widget(form.client.societeclient, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.client.arrivee, "Arrivée du destinataire", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.client.arrivee) }}
+                {{ form_widget(form.client.arrivee, {'attr': {'class': 'mdl-textfield__input', 'value': '2016-07-01'}}) }}
+
+            </div>
+
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="destinataireinterne" style="display:none">
+                {{ form_label(form.destinatairelocal, "Destinataire", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.destinatairelocal) }}
+                {{ form_widget(form.destinatairelocal, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+
+
+
+
+
+
+
+            <br>
+
+            <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" "/>
+            {{ form_end(form) }}
+
+
+
+
+        </div>
+        <div class="mdl-cell mdl-cell--4-col"></div>
+    </div>
+
+
+    <script type="text/javascript">
+        function hideinterne() {
+            document.getElementById('destinataireinterne').style.display='none';
+
+            document.getElementById('clientexterne').style.display='';
+
+        }
+
+        function hideexterne() {
+            document.getElementById('clientexterne').style.display='none';
+
+            document.getElementById('destinataireinterne').style.display='';
+
+        }
+    </script>
+
+
+{% endblock %}
+
+

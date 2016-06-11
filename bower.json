@@ -1,0 +1,21 @@
+{
+  "name": "ObjectPerdu",
+  "homepage": "https://github.com/cypriengilbert/ObjetPerdu",
+  "authors": [
+    "Cyprien Gilbert"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-material-datetimepicker": "^2.7.1",
+    "moment": "^2.13.0"
+  }
+}

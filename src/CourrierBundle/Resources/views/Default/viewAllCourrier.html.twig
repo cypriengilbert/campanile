@@ -1,0 +1,272 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+    <div class="mdl-grid" >
+
+    <div class="mdl-cell mdl-cell-4-col" >
+    <form>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+                <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+                <input type="text" class="light-table-filter mdl-textfield__input" data-table="order-table" placeholder="Filter" id="sample6">
+                <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+            </div>
+        </div>
+    </form>
+
+        <button onclick="hideOngoing()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="validbutton">
+            Voir archive
+        </button>
+        <button onclick="hideValid()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="ongoingbutton" style="display: none">
+            Voir en cours
+        </button>
+
+
+    </div>
+
+    <div class="mdl-cell mdl-cell-4-col" >
+    </div>
+    </div>
+
+
+<div class="mdl-grid" id="ongoing" >
+
+
+
+    <div class="mdl-cell mdl-cell-4-col" >
+
+
+
+
+
+
+        <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp order-table table" style="margin-top:20px">
+
+            <thead>
+            <tr>
+                <th data-priority="1">Title</th>
+                <th data-priority="5" >Date Arrivée</th>
+                <th data-priority="2">Destinataire</th>
+                <th data-priority="4" >Position</th>
+                <th data-priority="3" >Genre</th>
+                <th>Etat</th>
+                <th>Action</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+
+
+
+
+            {% for courrier in ListeCourrier %}
+            {% if courrier.etat == 1 %}
+
+
+
+
+
+                        <tr>
+                            <td>{{ courrier.title }}</td>
+                            <td>{{ courrier.arriveDestinataire|date("d/m/Y") }}</td>
+                            <td>{{ courrier.destinataire }}</td>
+                            <td>{{ courrier.position }}</td>
+                            <td>{{ courrier.genre }}</td>
+                            <td>
+
+                                {% if courrier.etat == 1 %}
+                                    {% if courrier.arriveDestinataire|date("Ymd") < "now"|date("Ymd") %}
+                                        <i class="material-icons" id="warning{{ courrier.id }}">warning</i>
+                                        <div class="mdl-tooltip" for="warning{{ courrier.id }}">
+                                            La date de remise est dépassée
+                                        </div>
+                                    {% elseif courrier.arriveDestinataire|date("Ymd") >= "now"|date("Ymd") %}
+                                        <i class="material-icons" id="waiting{{ courrier.id }}">timer</i>
+                                        <div class="mdl-tooltip" for="waiting{{ courrier.id }}">
+                                            Colis en attente
+                                        </div>
+                                    {% endif %}
+
+
+
+                                {% elseif courrier.etat == 0 %}
+                                    <i class="material-icons" id="done{{ courrier.id }}">done</i>
+                                    <div class="mdl-tooltip" for="done{{ courrier.id }}">
+                                        Colis délivré
+                                    </div>
+
+                                {% elseif courrier.etat == 1 %}
+
+                                {% endif %}
+
+
+
+                            </td>
+                            <td>
+
+
+                                {% if courrier.etat == 1 %}
+                                    <a style="color: black;" href="{{ path('modify_courrier',{'id':courrier.id}) }}"><i
+                                                class="fa fa-pencil" aria-hidden="true" id="modify{{ courrier.id }}"> </i></a>
+                                    <div class="mdl-tooltip" for="modify{{ courrier.id }}">
+                                        Modifier
+                                    </div>
+                                    <a style="color: black;" href="{{ path('end_courrier',{'id':courrier.id} ) }}"><i
+                                                class="fa fa-check-square-o" aria-hidden="true" id="check{{ courrier.id }}"> </i></a>
+                                    <div class="mdl-tooltip" for="check{{ courrier.id }}">
+                                        Valider la remise du courrier
+                                    </div>
+                                {% endif %}
+                                <a style="color: black; " href="{{ path('courrier_view',{'id':courrier.id} ) }}"><i
+                                            class="fa fa-eye" aria-hidden="true" id="detail{{ courrier.id }}"></i></a>
+                                <div class="mdl-tooltip" for="detail{{ courrier.id }}">
+                                    Afficher les details
+                                </div>
+                            </td>
+
+
+                        </tr>
+
+            {% endif %}
+
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div>
+    <div class="mdl-cell mdl-cell-4-col" >
+    </div>
+
+</div>
+
+    <div class="mdl-grid" id="valid" style="display: none" >
+
+
+        <div class="mdl-cell mdl-cell-4-col" >
+
+
+
+
+
+
+            <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp order-table table" style="margin-top:20px">
+
+                <thead>
+                <tr>
+                    <th data-priority="1">Title</th>
+                    <th data-priority="5" >Date Arrivée</th>
+                    <th data-priority="2">Destinataire</th>
+                    <th data-priority="4" >Position</th>
+                    <th data-priority="3" >Genre</th>
+                    <th>Etat</th>
+                    <th>Action</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+
+
+
+
+                {% for courrier in ListeCourrier %}
+
+                {% if courrier.etat == 0 %}
+
+
+
+
+                    <tr>
+                        <td>{{ courrier.title }}</td>
+                        <td>{{ courrier.arriveDestinataire|date("d/m/Y") }}</td>
+                        <td>{{ courrier.destinataire }}</td>
+                        <td>{{ courrier.position }}</td>
+                        <td>{{ courrier.genre }}</td>
+                        <td>
+
+                            {% if courrier.etat == 1 %}
+                                {% if courrier.arriveDestinataire|date("Ymd") < "now"|date("Ymd") %}
+                                    <i class="material-icons" id="warning{{ courrier.id }}">warning</i>
+                                    <div class="mdl-tooltip" for="warning{{ courrier.id }}">
+                                        La date de remise est dépassée
+                                    </div>
+                                {% elseif courrier.arriveDestinataire|date("Ymd") >= "now"|date("Ymd") %}
+                                    <i class="material-icons" id="waiting{{ courrier.id }}">timer</i>
+                                    <div class="mdl-tooltip" for="waiting{{ courrier.id }}">
+                                        Colis en attente
+                                    </div>
+                                {% endif %}
+
+
+                            {% elseif courrier.etat == 0 %}
+                                <i class="material-icons" id="done{{ courrier.id }}">done</i>
+                                <div class="mdl-tooltip" for="done{{ courrier.id }}">
+                                    Colis délivré
+                                </div>
+
+                            {% elseif courrier.etat == 1 %}
+
+                            {% endif %}
+
+
+                        </td>
+                        <td>
+
+
+                            {% if courrier.etat == 1 %}
+                                <a style="color: black;" href="{{ path('modify_courrier',{'id':courrier.id}) }}"><i
+                                            class="fa fa-pencil" aria-hidden="true" id="modify{{ courrier.id }}"> </i></a>
+                                <div class="mdl-tooltip" for="modify{{ courrier.id }}">
+                                    Modifier
+                                </div>
+                                <a style="color: black;" href="{{ path('end_courrier',{'id':courrier.id} ) }}"><i
+                                            class="fa fa-check-square-o" aria-hidden="true" id="check{{ courrier.id }}"> </i></a>
+                                <div class="mdl-tooltip" for="check{{ courrier.id }}">
+                                    Valider la remise du courrier
+                                </div>
+                            {% endif %}
+                            <a style="color: black; " href="{{ path('courrier_view',{'id':courrier.id} ) }}"><i
+                                        class="fa fa-eye" aria-hidden="true" id="detail{{ courrier.id }}"></i></a>
+                            <div class="mdl-tooltip" for="detail{{ courrier.id }}">
+                                Afficher les details
+                            </div>
+                        </td>
+
+
+                    </tr>
+
+
+                {% endif %}
+                {% endfor %}
+
+
+                </tbody>
+            </table>
+        </div>
+        <div class="mdl-cell mdl-cell-4-col" >
+        </div>
+
+    </div>
+
+    <script>
+        function hideValid() {
+            document.getElementById('valid').style.display='none';
+            document.getElementById('ongoingbutton').style.display='none';
+            document.getElementById('ongoing').style.display='';
+            document.getElementById('validbutton').style.display=''
+        }
+
+        function hideOngoing() {
+            document.getElementById('ongoing').style.display='none';
+            document.getElementById('validbutton').style.display='none';
+            document.getElementById('valid').style.display='';
+            document.getElementById('ongoingbutton').style.display='';
+        }
+    </script>
+
+
+   {% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'template.html.twig' %}
+
+{% block body %}
+
+<style>
+    .demo-card-wide.mdl-card {
+        width: 98%;
+        margin:1%;
+    }
+    .demo-card-wide > .mdl-card__title {
+        color: #fff;
+        height: 176px;
+        background: lightgrey;
+    }
+    .demo-card-wide > .mdl-card__menu {
+        color: #fff;
+    }
+</style>
+
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">{{ ListeCourrier.title }} - {% if ListeCourrier.etat == 0  %}
+
+             Remis le {{ ListeCourrier.finalDate|date("d/m/Y") }} ({{ ListeCourrier.finalDate|date("H") }}h{{ ListeCourrier.finalDate|date("i") }}) à {{ ListeCourrier.remisa }} par {{ ListeCourrier.remispar }}
+
+            {% endif %}</h2>
+
+    </div>
+    <div class="mdl-card__supporting-text">
+        {{ ListeCourrier.description }}
+    </div>
+    <div class="mdl-card__supporting-text">
+        Créé le {{ ListeCourrier.initialDate|date("d/m/Y") }}
+    </div>
+    <div class="mdl-card__supporting-text">
+        Emplacement : {{ ListeCourrier.position }}
+    </div>
+    <div class="mdl-card__supporting-text">
+        Enregistré par {{ ListeCourrier.auteur }}
+    </div>
+    <div class="mdl-card__supporting-text">
+        Destinataire : {{ ListeCourrier.destinataire }} -- {% if ListeCourrier.etat == 0 %} Arrive le {{ ListeCourrier.arriveDestinataire|date("d/m/Y") }} {% endif %}
+    </div>
+
+
+
+    {% if ListeCourrier.etat == 1  %}
+    <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            Modifier
+        </a>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+            Terminer
+        </a>
+    </div>
+    {% endif %}
+
+
+
+    <div class="mdl-card__menu">
+        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+            {% if ListeCourrier.etat == 1 %}
+                {% if ListeCourrier.arriveDestinataire|date("d/m/Y") < "now"|date("d/m/Y") %}
+                    <i class="material-icons">warning</i>
+                    {% else %}
+                        <i class="material-icons">timer</i>
+                {% endif %}
+
+
+
+            {% elseif ListeCourrier.etat == 0 %}
+                <i class="material-icons">done</i>
+
+            {% elseif ListeCourrier.etat == 1 %}
+
+            {% endif %}
+
+        </button>
+    </div>
+
+</div>
+{% endblock %}

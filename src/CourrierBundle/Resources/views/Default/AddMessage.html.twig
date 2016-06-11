@@ -1,0 +1,97 @@
+{% extends 'template.html.twig' %}
+
+
+{% block body %}
+
+    <style>
+        .form{
+            display: inline-block;
+            text-align: center;
+        }
+    </style>
+
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col"></div>
+        <div class="mdl-cell mdl-cell--4-col">
+
+
+            {{ form_start(form, {'attr': {'class':'form'}}) }}
+
+            {{ form_errors(form) }}
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.destinataire, "Destinataire", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.destinataire) }}
+                {{ form_widget(form.destinataire, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.messager, "Qui prend le message ?", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.messager) }}
+                {{ form_widget(form.messager, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.sujet, "Sujet", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.sujet) }}
+                {{ form_widget(form.sujet, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.description, "Message", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.description) }}
+                {{ form_widget(form.description, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+            </br>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.expediteur, "Nom du contact", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.expediteur) }}
+                {{ form_widget(form.expediteur, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.societe, "Societe", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.societe) }}
+                {{ form_widget(form.societe, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.contact, "Adresse mail", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_errors(form.contact) }}
+                {{ form_widget(form.contact, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                {{ form_label(form.phone, "Téléphone", {'label_attr': {'class': 'mdl-textfield__label', 'pattern': '-?[0-9]*(\.[0-9]+)?'}}) }}
+                {{ form_errors(form.phone) }}
+                {{ form_widget(form.phone, {'attr': {'class': 'mdl-textfield__input'}}) }}
+
+            </div>
+
+
+
+
+
+
+            <br>
+
+            <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" "/>
+            {{ form_end(form) }}
+
+
+
+
+        </div>
+        <div class="mdl-cell mdl-cell--4-col"></div>
+    </div>
+
+
+
+{% endblock %}
+
+

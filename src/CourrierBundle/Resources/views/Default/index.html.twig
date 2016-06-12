@@ -5,11 +5,11 @@
 
 
 
-    <div class="mdl-grid" >
+    <div class="mdl-grid" id="testtoast" >
 
 
 
-    <div class="mdl-cell mdl-cell--8-col">
+    <div class="mdl-cell mdl-cell--6-col">
         <form>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
                 <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
@@ -32,11 +32,11 @@
 
             <thead>
             <tr>
-                <th data-priority="1">Title</th>
-                <th data-priority="5" >Date Arrivée</th>
+                <th data-priority="1">Titre</th>
+                <th data-priority="5" >Date d'arrivée</th>
                 <th data-priority="2">Destinataire</th>
-                <th data-priority="4" >Position</th>
-                <th data-priority="3" >Genre</th>
+                <th data-priority="4" >Emplacement</th>
+                <th data-priority="3" >Type</th>
                 <th>Etat</th>
                 <th>Action</th>
 
@@ -133,21 +133,21 @@
 
         </div><br>
 
-        <div class="mdl-cell mdl-cell--2-col" style="text-align: center">
+        <div class="mdl-cell mdl-cell--3-col" style="text-align: center">
             <a href="{{ path('add_courrier') }}">
                 <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
-                        style="width:150px; height:150px; margin-top:60px">
+                        style="width:200px; height:200px; margin-top:150px">
 
-                    NOUVEAU COLIS
+                    NOUVELLE RECEPTION
                 </button>
             </a>
 
         </div>
 
-        <div class="mdl-cell mdl-cell--2-col" style="text-align: center; ">
+        <div class="mdl-cell mdl-cell--3-col" style="text-align: center; ">
             <a href="{{ path('add_message') }}">
                 <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
-                        style="width:150px; height:150px; margin-top:60px">
+                        style="width:200px; height:200px; margin-top:150px">
                     NOUVEAU MESSAGE
                 </button>
             </a>
@@ -232,6 +232,8 @@
             </div>
             {% endif %}
         </div>
+
+
 
 
 

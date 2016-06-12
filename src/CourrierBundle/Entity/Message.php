@@ -34,7 +34,7 @@ class Message
                 /**
                * @var int
                *
-               * @ORM\Column(name="phone", type="integer", unique=false)
+               * @ORM\Column(name="phone", type="integer", unique=false, nullable=true)
                */
               private $phone;
 

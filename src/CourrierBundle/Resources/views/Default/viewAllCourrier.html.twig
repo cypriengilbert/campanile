@@ -42,17 +42,17 @@
 
 
 
-        <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp order-table table" style="margin-top:20px">
+        <table id="myTable" class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp order-table table tablesorter" style="margin-top:20px">
 
             <thead>
             <tr>
-                <th data-priority="6">Type</th>
-                <th data-priority="1">Title</th>
-                <th data-priority="5" >Date Arrivée</th>
+                <th data-sort="string" data-priority="6">Genre</th>
+                <th data-priority="1">Titre</th>
+                <th data-sort="int" data-priority="5" >Date d'arrivée</th>
                 <th data-priority="2">Destinataire</th>
-                <th data-priority="4" >Position</th>
-                <th data-priority="3" >Genre</th>
-                <th>Etat</th>
+                <th data-priority="4" >Emplacement</th>
+                <th data-priority="3" >Type</th>
+                <th data-sort="int">Etat</th>
                 <th>Action</th>
 
 
@@ -80,15 +80,17 @@
                         {% endif %}
                     </td>
                     <td>{{ courrier.title }}</td>
-                    <td>
+                    {% if courrier.client %}
+                    <td data-sort-value="{{ courrier.client.arrivee|date("U") }}">
 
-                        {% if courrier.client %}
+
                         {{ courrier.client.arrivee|date("d/m/Y") }}
-                        {% elseif courrier.destinatairelocal %}
-                            <i class="fa fa-ban" aria-hidden="true"></i>
-                        {% endif %}
-                    </td>
 
+
+                    </td>
+                    {% elseif courrier.destinatairelocal %}
+                        <td data-sort-value="0"><i class="fa fa-ban" aria-hidden="true"></i></td>
+                    {% endif %}
                     <td>
                         {% if courrier.client %}
                         {{ courrier.client.nomclient }} {{ courrier.client.prenomclient }}
@@ -98,7 +100,7 @@
                     </td>
                     <td>{{ courrier.position }}</td>
                     <td>{{ courrier.genre }}</td>
-                    <td>
+                    <td data-sort-value="{{ courrier.etat }}">
                         {% if courrier.etat == 1 %}
                             {% if courrier.client %}
 
@@ -184,17 +186,17 @@
 
 
 
-            <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp order-table table" style="margin-top:20px">
+            <table id="myTable2" class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp order-table table" style="margin-top:20px">
 
                 <thead>
                 <tr>
-                    <th data-priority="6">Type</th>
-                    <th data-priority="1">Title</th>
-                    <th data-priority="5" >Date Arrivée</th>
+                    <th data-sort="string" data-priority="6">Genre</th>
+                    <th data-priority="1">Titre</th>
+                    <th data-sort="int" data-priority="5" >Date d'arrivée</th>
                     <th data-priority="2">Destinataire</th>
-                    <th data-priority="4" >Position</th>
-                    <th data-priority="3" >Genre</th>
-                    <th>Etat</th>
+                    <th data-priority="4" >Emplacement</th>
+                    <th data-priority="3" >Type</th>
+                    <th data-sort="int">Etat</th>
                     <th>Action</th>
 
 
@@ -222,15 +224,17 @@
                             {% endif %}
                         </td>
                         <td>{{ courrier.title }}</td>
-                        <td>
+                        {% if courrier.client %}
+                            <td data-sort-value="{{ courrier.client.arrivee|date("U") }}">
 
-                            {% if courrier.client %}
+
                                 {{ courrier.client.arrivee|date("d/m/Y") }}
-                            {% elseif courrier.destinatairelocal %}
-                                <i class="fa fa-ban" aria-hidden="true"></i>
-                            {% endif %}
-                        </td>
 
+
+                            </td>
+                        {% elseif courrier.destinatairelocal %}
+                            <td data-sort-value="0"><i class="fa fa-ban" aria-hidden="true"></i></td>
+                        {% endif %}
                         <td>
                             {% if courrier.client %}
                                 {{ courrier.client.nomclient }} {{ courrier.client.prenomclient }}
@@ -240,7 +244,7 @@
                         </td>
                         <td>{{ courrier.position }}</td>
                         <td>{{ courrier.genre }}</td>
-                        <td>
+                        <td data-sort-value="{{ courrier.etat }}">
                             {% if courrier.etat == 1 %}
                             {% if courrier.client %}
 
@@ -330,6 +334,8 @@
             document.getElementById('valid').style.display='';
             document.getElementById('ongoingbutton').style.display='';
         }
+
+
     </script>
 
 

@@ -29,7 +29,7 @@ class MessageType extends AbstractType
       ->add('societe',    'text',  array('required' => false))
       ->add('phone',    'number', array('required' => false))
       ->add('expediteur',   'text')
-      ->add('contact', 'text')
+      ->add('contact', 'text', array('required' => false))
 
 
     ;

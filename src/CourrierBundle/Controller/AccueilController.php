@@ -104,15 +104,26 @@ class AccueilController extends Controller
         if ($form->handleRequest($request)->isValid()) {
          if ($newcourrier->getDestinatairelocal() != null){
                 $newcourrier->setClient(null);
-
+                   $newcourrier->setEtat(0);
                 }
             $em = $this->getDoctrine()->getManager();
             $em->persist($newcourrier);
             $em->flush();
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
-            $newId = $newcourrier->getId();
-            return $this->redirect($this->generateUrl('courrier_view', array(
-                'id' => $newId
+            if ($newcourrier->getDestinatairelocal() != null){
+
+                                        $newDestinataire       = $newcourrier->getDestinatairelocal()->getEmail();
+                                        $newDestinatairePrenom = $newcourrier->getDestinatairelocal()->getPrenom();
+                                        $newEmplacement = $newcourrier->getPosition();
+                                        $newReceptioniste = $newcourrier->getAuteur();
+                                        //Envoie mail
+                                        $message               = \Swift_Message::newInstance()->setSubject('Nouvelle reception en attente pour vous à la reception')->setFrom('cyprien@cypriengilbert.com')->setTo($newDestinataire)->setBody('Bonjour ' . $newDestinatairePrenom . '<br><br> Une réception a été faite pour vous à la réception par '.$newReceptioniste.' .', 'text/html');
+                                        $this->get('mailer')->send($message);
+
+                             }
+
+            return $this->redirect($this->generateUrl('accueil', array(
+                'validate' => 'réception'
             )));
         }
         return $this->render('CourrierBundle:Default:AddCourrier.html.twig', array(
@@ -149,8 +160,8 @@ class AccueilController extends Controller
             //Envoie mail
             $message               = \Swift_Message::newInstance()->setSubject('Nouveau message provenant de la réception')->setFrom('cyprien@cypriengilbert.com')->setTo($newDestinataire)->setBody('Bonjour ' . $newDestinatairePrenom . '<br><br> Un nouveau message a été enregistré pour vous à la réception <br> Voici le message : ' . $newDescription . '<br><br> Vous pouvez recontacter ' . $newExpediteur . ' en le contactant comme ceci : ' . $newContact, 'text/html');
             $this->get('mailer')->send($message);
-            return $this->redirect($this->generateUrl('message_view', array(
-                'id' => $newId
+            return $this->redirect($this->generateUrl('accueil', array(
+                'validate' => 'message'
             )));
         }
         return $this->render('CourrierBundle:Default:AddMessage.html.twig', array(
@@ -183,7 +194,7 @@ class AccueilController extends Controller
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
             $newId = $courrier->getId();
             return $this->redirect($this->generateUrl('courrier_view', array(
-                'id' => $newId
+                'end_validate' => 'reception'
             )));
         }
         return $this->render('CourrierBundle:Default:EndCourrier.html.twig', array(
@@ -211,10 +222,10 @@ class AccueilController extends Controller
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
             $newId = $courrier->getId();
             return $this->redirect($this->generateUrl('courrier_view', array(
-                'id' => $newId
+                'modify_validate' => 'reception'
             )));
         }
-        return $this->render('CourrierBundle:Default:AddCourrier.html.twig', array(
+        return $this->render('CourrierBundle:Default:ModifyCourrier.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -237,7 +248,9 @@ class AccueilController extends Controller
         $em->persist($message);
         $em->flush();
         $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
-        return $this->redirect($this->generateUrl('accueil'));
+        return $this->redirect($this->generateUrl('accueil', array(
+                                                                           'end_validate' => 'message'
+                                                                       )));
     }
 
 

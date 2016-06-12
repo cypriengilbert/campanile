@@ -21,17 +21,7 @@ class ModifyCourrierType extends AbstractType
             ->add('description',    'textarea',  array('required'    => false))
             ->add('position',   'text')
             ->add('title', 'text')
-            ->add('client', new ClientType())
-            ->add('destinatairelocal', EntityType::class, array(
-                                           // query choices from this entity
-                                           'class' => 'UserBundle:User',
 
-                                           // use the User.username property as the visible option string
-                                           'choice_label' => 'prenom',
-
-
-                                           'required' => false,
-                                       ))
     ;
   }
 

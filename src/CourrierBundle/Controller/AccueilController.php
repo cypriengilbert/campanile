@@ -99,7 +99,13 @@ class AccueilController extends Controller
 
         $newcourrier->setEtat(1);
         $form = $this->get('form.factory')->create('CourrierBundle\Form\Type\CourrierType', $newcourrier);
+
+
         if ($form->handleRequest($request)->isValid()) {
+         if ($newcourrier->getDestinatairelocal() != null){
+                $newcourrier->setClient(null);
+
+                }
             $em = $this->getDoctrine()->getManager();
             $em->persist($newcourrier);
             $em->flush();

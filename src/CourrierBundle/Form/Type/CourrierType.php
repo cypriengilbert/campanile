@@ -7,6 +7,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use CourrierBundle\Entity\Client;
+use UserBundle\Entity\User;
+
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
@@ -18,7 +20,7 @@ class CourrierType extends AbstractType
     $builder
       ->add('auteur',   'text')
       ->add('genre', ChoiceType::class, array(
-                                      'choices' => array('', 'Palette', 'Carton', 'Tube', 'Enveloppe')))
+                                      'choices' => array('', 'Palette' => 'Palette', 'Carton' => 'Carton', 'Tube' => 'Tube', 'Enveloppe' => 'Enveloppe')))
       ->add('description',    'textarea',  array('required'    => false))
       ->add('position',   'text')
       ->add('title', 'text')

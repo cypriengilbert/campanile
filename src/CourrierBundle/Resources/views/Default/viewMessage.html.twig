@@ -10,7 +10,11 @@
         .demo-card-wide > .mdl-card__title {
             color: #fff;
             height: 176px;
-            background: lightgrey;
+            background-image: url({{ asset('img/enveloppe.png') }});
+            background-repeat:no-repeat;
+            background-position:center center;
+            background-color: lightgrey;
+            background-size: contain;
         }
         .demo-card-wide > .mdl-card__menu {
             color: #fff;
@@ -39,11 +43,9 @@
         </div>
 
         <div class="mdl-card__actions mdl-card--border">
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                Modifier
-            </a>
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                Terminer
+
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{ path('end_message',{'id':ListeMessage.id} ) }}">
+                Marquer comme lu
             </a>
         </div>
 

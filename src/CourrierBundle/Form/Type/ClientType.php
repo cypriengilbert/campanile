@@ -18,7 +18,7 @@ class ClientType extends AbstractType
             ->add('nomclient')
             ->add('prenomclient')
             ->add('societeclient')
-            ->add('arrivee', 'date', array('widget' => 'single_text', 'empty_value' => array('year' => '2016', 'month' => '05', 'day' => '05')))
+            ->add('arrivee', 'date', array('widget' => 'single_text',  'required' => false))
         ;
     }
     

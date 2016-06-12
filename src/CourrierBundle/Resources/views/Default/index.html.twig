@@ -2,11 +2,14 @@
 
 {% block body %}
 
-<div class="mdl-grid" >
 
 
 
-    <div class="mdl-cell mdl-cell--6-col">
+    <div class="mdl-grid" >
+
+
+
+    <div class="mdl-cell mdl-cell--8-col">
         <form>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
                 <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
@@ -46,6 +49,7 @@
             {% set i = 0  %}
 
             {% for courrier in ListeCourrier %}
+                {% if courrier.client %}
                 {% if courrier.client.arrivee|date("Ymd") == "now"|date("Ymd") %}
                     {% if i < 10 %}
                     {% set i = i + 1 %}
@@ -55,7 +59,9 @@
                     <tr>
                     <td>{{ courrier.title }}</td>
                     <td>{{ courrier.client.arrivee|date("d/m/Y") }}</td>
+
                     <td>{{ courrier.client.nomclient }} {{ courrier.client.prenomclient }}</td>
+
                     <td>{{ courrier.position }}</td>
                     <td>{{ courrier.genre }}</td>
                     <td>
@@ -113,6 +119,7 @@
                 </tr>
                     {% endif %}
                 {% endif %}
+            {% endif %}
 
 
             {% endfor %}
@@ -125,110 +132,114 @@
             </button></a>
 
         </div><br>
-    <div class="mdl-cell mdl-cell-6-col" style="margin-top:75px; ">
-        {% if is_granted('ROLE_ADMIN') %}
 
-        <h4>Messages</h4>
-
-
-
-
-
-
-
-
-
-        <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp order-table table" style="margin-top:20px">
-            <thead>
-            <tr>
-
-
-                <th>Message</th>
-                <th>Destinataire</th>
-                <th>Messager</th>
-                <th>Action</th>
-
-
-            </tr>
-            </thead>
-            <tbody>
-            {% for message in ListeMessage %}
-                {% if message.destinataire == app.user.username %}
-                    {% if message.isarchived == 0 %}
-
-
-
-                    <tr>
-
-
-
-                        <td style="max-width: 200px;overflow:hidden" id="description_tableau{{ message.id }}" >{{ message.description }}</td>
-                        <div class="mdl-tooltip" for="description_tableau{{ message.id }}">
-                            {{ message.description }}
-                        </div>
-                        <td>{{ message.destinataire.prenom }}</td>
-                        <td>{{ message.messager }}</td>
-
-                        <td>
-                            <a style="color: black;" href="{{ path('end_message',{'id':message.id} ) }}"><i id="archived{{ message.id }}" class="fa fa-check-square-o" aria-hidden="true"></i></a>
-                            <div class="mdl-tooltip" for="archived{{ message.id }}">
-                               Archiver le message
-                            </div>
-                            <a style="color: black;" href="{{ path('message_view',{'id':message.id} ) }}"><i id="details{{ message.id }}" class="fa fa-eye" aria-hidden="true"></i></a></td>
-                        <div class="mdl-tooltip" for="details{{ message.id }}">
-                            Afficher les details
-                        </div>
-
-
-                    </tr>
-
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
-
-
-
-
-
-
-
-            </tbody>
-        </table>
-        <a href="{{ path('allmessage') }}"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-top:20px" id="validbutton">
-            Voir tous les messages
-        </button></a>
-            </div>
-            {% endif %}
-</div>
-
-    <div class="mdl-grid" style="margin-top:100px">
-
-
-
-        <div class="mdl-cell mdl-cell--6-col" style="text-align: center">
+        <div class="mdl-cell mdl-cell--2-col" style="text-align: center">
             <a href="{{ path('add_courrier') }}">
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
-                    style="width:300px; height:300px">
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
+                        style="width:150px; height:150px; margin-top:60px">
 
-                NOUVEAU COLIS
-            </button>
+                    NOUVEAU COLIS
+                </button>
             </a>
 
         </div>
 
-        <div class="mdl-cell mdl-cell--6-col" style="text-align: center">
+        <div class="mdl-cell mdl-cell--2-col" style="text-align: center; ">
             <a href="{{ path('add_message') }}">
                 <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
-                        style="width:300px; height:300px">
+                        style="width:150px; height:150px; margin-top:60px">
                     NOUVEAU MESSAGE
                 </button>
             </a>
         </div>
-
-
-
-
     </div>
+
+        <div class="mdl-grid" style="margin-top:10px;">
+
+
+            <div class="mdl-cell mdl-cell-6-col" style="margin-top:75px; ">
+                {% if is_granted('ROLE_ADMIN') %}
+
+                <h4>Messages</h4>
+
+
+
+
+
+
+
+
+
+                <table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp order-table table" style="margin-top:20px">
+                    <thead>
+                    <tr>
+
+
+                        <th>Message</th>
+                        <th>Destinataire</th>
+                        <th>Messager</th>
+                        <th>Action</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for message in ListeMessage %}
+                        {% if message.destinataire == app.user.username %}
+                            {% if message.isarchived == 0 %}
+
+
+
+                                <tr>
+
+
+
+                                    <td style="max-width: 200px;overflow:hidden" id="description_tableau{{ message.id }}" >{{ message.description }}</td>
+                                    <div class="mdl-tooltip" for="description_tableau{{ message.id }}">
+                                        {{ message.description }}
+                                    </div>
+                                    <td>{{ message.destinataire.prenom }}</td>
+                                    <td>{{ message.messager }}</td>
+
+                                    <td>
+                                        <a style="color: black;" href="{{ path('end_message',{'id':message.id} ) }}"><i id="archived{{ message.id }}" class="fa fa-check-square-o" aria-hidden="true"></i></a>
+                                        <div class="mdl-tooltip" for="archived{{ message.id }}">
+                                            Archiver le message
+                                        </div>
+                                        <a style="color: black;" href="{{ path('message_view',{'id':message.id} ) }}"><i id="details{{ message.id }}" class="fa fa-eye" aria-hidden="true"></i></a></td>
+                                    <div class="mdl-tooltip" for="details{{ message.id }}">
+                                        Afficher les details
+                                    </div>
+
+
+                                </tr>
+
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+
+
+
+
+
+
+
+                    </tbody>
+                </table>
+                <a href="{{ path('allmessage') }}"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-top:20px" id="validbutton">
+                        Voir tous les messages
+                    </button></a>
+            </div>
+            {% endif %}
+        </div>
+
+
+
+
+
+
+
+
 
 
 

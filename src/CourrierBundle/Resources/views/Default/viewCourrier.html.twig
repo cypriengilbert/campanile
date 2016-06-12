@@ -10,7 +10,11 @@
     .demo-card-wide > .mdl-card__title {
         color: #fff;
         height: 176px;
-        background: lightgrey;
+        background-image: url({{ asset('img/'~ ListeCourrier.genre ~ '.png') }});
+        background-repeat:no-repeat;
+        background-position:center center;
+        background-color: lightgrey;
+        background-size: contain;
     }
     .demo-card-wide > .mdl-card__menu {
         color: #fff;
@@ -38,19 +42,24 @@
     <div class="mdl-card__supporting-text">
         Enregistré par {{ ListeCourrier.auteur }}
     </div>
+    {% if ListeCourrier.client %}
     <div class="mdl-card__supporting-text">
-        Destinataire : {{ ListeCourrier.destinataire }} -- {% if ListeCourrier.etat == 0 %} Arrive le {{ ListeCourrier.arriveDestinataire|date("d/m/Y") }} {% endif %}
+        Destinataire : {{ ListeCourrier.client.nomclient }} {{ ListeCourrier.client.prenomclient }} -- {% if ListeCourrier.etat == 0 %} Arrive le {{ ListeCourrier.client.arrivee|date("d/m/Y") }} {% endif %}
     </div>
-
+    {% elseif ListeCourrier.destinatairelocal %}
+        <div class="mdl-card__supporting-text">
+            Destinataire : {{ ListeCourrier.destinatairelocal.prenom }} {{ ListeCourrier.destinatairelocal.prenom  }}
+        </div>
+    {% endif %}
 
 
     {% if ListeCourrier.etat == 1  %}
     <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"  href="{{ path('modify_courrier',{'id':ListeCourrier.id}) }}">
             Modifier
         </a>
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-            Terminer
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{{ path('end_courrier',{'id':ListeCourrier.id} ) }}">
+            Colis livré
         </a>
     </div>
     {% endif %}
@@ -59,12 +68,18 @@
 
     <div class="mdl-card__menu">
         <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+
             {% if ListeCourrier.etat == 1 %}
-                {% if ListeCourrier.arriveDestinataire|date("d/m/Y") < "now"|date("d/m/Y") %}
+            {% if ListeCourrier.client %}
+                {% if ListeCourrier.client.arrivee|date("d/m/Y") < "now"|date("d/m/Y") %}
                     <i class="material-icons">warning</i>
+
                     {% else %}
                         <i class="material-icons">timer</i>
                 {% endif %}
+            {% elseif ListeCourrier.destinatairelocal %}
+                <i class="material-icons">timer</i>
+            {% endif %}
 
 
 

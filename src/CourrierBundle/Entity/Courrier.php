@@ -3,6 +3,7 @@
 namespace CourrierBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use UserBundle\Entity\User;
 
 /**
  * Courrier
@@ -368,12 +369,7 @@ class Courrier
     }
 
 
-     /**
-         * Set client
-         *
-         * @param string $client
-         * @return Courrier
-         */
+
         public function setClient($client)
         {
             $this->client = $client;
@@ -381,11 +377,7 @@ class Courrier
             return $this;
         }
 
-        /**
-         * Get client
-         *
-         * @return string
-         */
+
         public function getClient()
         {
             return $this->client;

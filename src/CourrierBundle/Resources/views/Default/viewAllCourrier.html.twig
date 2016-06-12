@@ -46,6 +46,7 @@
 
             <thead>
             <tr>
+                <th data-priority="6">Type</th>
                 <th data-priority="1">Title</th>
                 <th data-priority="5" >Date Arrivée</th>
                 <th data-priority="2">Destinataire</th>
@@ -69,66 +70,96 @@
 
 
 
-                        <tr>
-                            <td>{{ courrier.title }}</td>
-                            <td>{{ courrier.arriveDestinataire|date("d/m/Y") }}</td>
-                            <td>{{ courrier.destinataire }}</td>
-                            <td>{{ courrier.position }}</td>
-                            <td>{{ courrier.genre }}</td>
-                            <td>
 
-                                {% if courrier.etat == 1 %}
-                                    {% if courrier.arriveDestinataire|date("Ymd") < "now"|date("Ymd") %}
-                                        <i class="material-icons" id="warning{{ courrier.id }}">warning</i>
-                                        <div class="mdl-tooltip" for="warning{{ courrier.id }}">
-                                            La date de remise est dépassée
-                                        </div>
-                                    {% elseif courrier.arriveDestinataire|date("Ymd") >= "now"|date("Ymd") %}
-                                        <i class="material-icons" id="waiting{{ courrier.id }}">timer</i>
-                                        <div class="mdl-tooltip" for="waiting{{ courrier.id }}">
-                                            Colis en attente
-                                        </div>
-                                    {% endif %}
+                <tr>
+                    <td>
+                        {% if courrier.client %}
+                        Externe
+                        {% elseif courrier.destinatairelocal %}
+                        Interne
+                        {% endif %}
+                    </td>
+                    <td>{{ courrier.title }}</td>
+                    <td>
 
+                        {% if courrier.client %}
+                        {{ courrier.client.arrivee|date("d/m/Y") }}
+                        {% elseif courrier.destinatairelocal %}
+                            <i class="fa fa-ban" aria-hidden="true"></i>
+                        {% endif %}
+                    </td>
 
+                    <td>
+                        {% if courrier.client %}
+                        {{ courrier.client.nomclient }} {{ courrier.client.prenomclient }}
+                        {% elseif courrier.destinatairelocal %}
+                            {{ courrier.destinatairelocal.prenom }} {{ courrier.destinatairelocal.nom }}
+                        {% endif %}
+                    </td>
+                    <td>{{ courrier.position }}</td>
+                    <td>{{ courrier.genre }}</td>
+                    <td>
+                        {% if courrier.etat == 1 %}
+                            {% if courrier.client %}
 
-                                {% elseif courrier.etat == 0 %}
-                                    <i class="material-icons" id="done{{ courrier.id }}">done</i>
-                                    <div class="mdl-tooltip" for="done{{ courrier.id }}">
-                                        Colis délivré
+                                {% if courrier.client.arrivee|date("Ymd") < "now"|date("Ymd") %}
+                                    <i class="material-icons" id="warning{{ courrier.id }}">warning</i>
+                                    <div class="mdl-tooltip" for="warning{{ courrier.id }}">
+                                        La date de remise est dépassée
                                     </div>
-
-                                {% elseif courrier.etat == 1 %}
-
-                                {% endif %}
-
-
-
-                            </td>
-                            <td>
-
-
-                                {% if courrier.etat == 1 %}
-                                    <a style="color: black;" href="{{ path('modify_courrier',{'id':courrier.id}) }}"><i
-                                                class="fa fa-pencil" aria-hidden="true" id="modify{{ courrier.id }}"> </i></a>
-                                    <div class="mdl-tooltip" for="modify{{ courrier.id }}">
-                                        Modifier
-                                    </div>
-                                    <a style="color: black;" href="{{ path('end_courrier',{'id':courrier.id} ) }}"><i
-                                                class="fa fa-check-square-o" aria-hidden="true" id="check{{ courrier.id }}"> </i></a>
-                                    <div class="mdl-tooltip" for="check{{ courrier.id }}">
-                                        Valider la remise du courrier
+                                {% elseif courrier.client.arrivee|date("Ymd") >= "now"|date("Ymd") %}
+                                    <i class="material-icons" id="waiting{{ courrier.id }}">timer</i>
+                                    <div class="mdl-tooltip" for="waiting{{ courrier.id }}">
+                                        Colis en attente
                                     </div>
                                 {% endif %}
-                                <a style="color: black; " href="{{ path('courrier_view',{'id':courrier.id} ) }}"><i
-                                            class="fa fa-eye" aria-hidden="true" id="detail{{ courrier.id }}"></i></a>
-                                <div class="mdl-tooltip" for="detail{{ courrier.id }}">
-                                    Afficher les details
-                                </div>
-                            </td>
+                                {% elseif courrier.destinatairelocal %}
+                                    <i class="material-icons" id="waiting{{ courrier.id }}">timer</i>
+                                    <div class="mdl-tooltip" for="waiting{{ courrier.id }}">
+                                        Colis en attente
+                                    </div>
 
 
-                        </tr>
+                            {% endif %}
+
+
+
+                        {% elseif courrier.etat == 0 %}
+                            <i class="material-icons" id="done{{ courrier.id }}">done</i>
+                            <div class="mdl-tooltip" for="done{{ courrier.id }}">
+                                Colis délivré
+                            </div>
+
+                        {% elseif courrier.etat == 1 %}
+
+                        {% endif %}
+
+
+                    </td>
+                    <td>
+
+
+                        {% if courrier.etat == 1 %}
+                            <a style="color: black;" href="{{ path('modify_courrier',{'id':courrier.id}) }}"><i
+                                        class="fa fa-pencil" aria-hidden="true" id="modify{{ courrier.id }}"> </i></a>
+                            <div class="mdl-tooltip" for="modify{{ courrier.id }}">
+                                Modifier
+                            </div>
+                            <a style="color: black;" href="{{ path('end_courrier',{'id':courrier.id} ) }}"><i
+                                        class="fa fa-check-square-o" aria-hidden="true" id="check{{ courrier.id }}"> </i></a>
+                            <div class="mdl-tooltip" for="check{{ courrier.id }}">
+                                Valider la remise du courrier
+                            </div>
+                        {% endif %}
+                        <a style="color: black; " href="{{ path('courrier_view',{'id':courrier.id} ) }}"><i
+                                    class="fa fa-eye" aria-hidden="true" id="detail{{ courrier.id }}"></i></a>
+                        <div class="mdl-tooltip" for="detail{{ courrier.id }}">
+                            Afficher les details
+                        </div>
+                    </td>
+
+
+                </tr>
 
             {% endif %}
 
@@ -157,6 +188,7 @@
 
                 <thead>
                 <tr>
+                    <th data-priority="6">Type</th>
                     <th data-priority="1">Title</th>
                     <th data-priority="5" >Date Arrivée</th>
                     <th data-priority="2">Destinataire</th>
@@ -180,26 +212,58 @@
 
 
 
+
                     <tr>
+                        <td>
+                            {% if courrier.client %}
+                                Externe
+                            {% elseif courrier.destinatairelocal %}
+                                Interne
+                            {% endif %}
+                        </td>
                         <td>{{ courrier.title }}</td>
-                        <td>{{ courrier.arriveDestinataire|date("d/m/Y") }}</td>
-                        <td>{{ courrier.destinataire }}</td>
+                        <td>
+
+                            {% if courrier.client %}
+                                {{ courrier.client.arrivee|date("d/m/Y") }}
+                            {% elseif courrier.destinatairelocal %}
+                                <i class="fa fa-ban" aria-hidden="true"></i>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {% if courrier.client %}
+                                {{ courrier.client.nomclient }} {{ courrier.client.prenomclient }}
+                            {% elseif courrier.destinatairelocal %}
+                                {{ courrier.destinatairelocal.prenom }} {{ courrier.destinatairelocal.nom }}
+                            {% endif %}
+                        </td>
                         <td>{{ courrier.position }}</td>
                         <td>{{ courrier.genre }}</td>
                         <td>
-
                             {% if courrier.etat == 1 %}
-                                {% if courrier.arriveDestinataire|date("Ymd") < "now"|date("Ymd") %}
+                            {% if courrier.client %}
+
+                                {% if courrier.client.arrivee|date("Ymd") < "now"|date("Ymd") %}
                                     <i class="material-icons" id="warning{{ courrier.id }}">warning</i>
                                     <div class="mdl-tooltip" for="warning{{ courrier.id }}">
                                         La date de remise est dépassée
                                     </div>
-                                {% elseif courrier.arriveDestinataire|date("Ymd") >= "now"|date("Ymd") %}
+                                {% elseif courrier.client.arrivee|date("Ymd") >= "now"|date("Ymd") %}
                                     <i class="material-icons" id="waiting{{ courrier.id }}">timer</i>
                                     <div class="mdl-tooltip" for="waiting{{ courrier.id }}">
                                         Colis en attente
                                     </div>
                                 {% endif %}
+                                    {% elseif courrier.destinatairelocal %}
+                                    <i class="material-icons" id="waiting{{ courrier.id }}">timer</i>
+                                    <div class="mdl-tooltip" for="waiting{{ courrier.id }}">
+                                        Colis en attente
+                                    </div>
+
+
+                                {% endif %}
+
 
 
                             {% elseif courrier.etat == 0 %}

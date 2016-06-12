@@ -5,6 +5,10 @@ namespace CourrierBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use CourrierBundle\Entity\Client;
+use UserBundle\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ModifyCourrierType extends AbstractType
 {

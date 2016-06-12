@@ -45,7 +45,7 @@ class Client
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="arrivee", type="datetime")
+     * @ORM\Column(name="arrivee", type="datetime", nullable=true)
      */
     private $arrivee;
 

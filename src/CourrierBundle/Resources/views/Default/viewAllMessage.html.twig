@@ -76,7 +76,10 @@
 
 
 
-                                <td>{{ message.description }}</td>
+                                <td style="max-width: 200px;overflow:hidden" id="description_tableau{{ message.id }}" >{{ message.description }}</td>
+                                <div class="mdl-tooltip" for="description_tableau{{ message.id }}">
+                                    {{ message.description }}
+                                </div>
                                 <td>{{ message.destinataire.prenom }}</td>
                                 <td>{{ message.messager }}</td>
 

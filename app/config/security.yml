@@ -31,7 +31,7 @@ security:
 
             - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
             - { path: ^/, role: ROLE_USER }
-            - { path: ^/search, role: ROLE_USER }
+            - { path: ^/search, role: ROLE_SUPER_ADMIN }
             - { path: ^/accueil, role: ROLE_USER }
             - { path: ^/allcourrier, role: ROLE_USER }
             - { path: ^/allmessage, role: ROLE_ADMIN }

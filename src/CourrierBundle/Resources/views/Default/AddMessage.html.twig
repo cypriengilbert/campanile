@@ -20,11 +20,12 @@
             {{ form_errors(form) }}
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                {{ form_label(form.destinataire, "Destinataire", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
+                {{ form_label(form.destinataire, "Destinataire", {'label_attr': {'class': 'mdl-textfield__label', 'style': 'top:4px;'}}) }}
                 {{ form_errors(form.destinataire) }}
-                {{ form_widget(form.destinataire, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                {{ form_widget(form.destinataire,{'attr': {'class': 'mdl-textfield__input'}},  {'value' : '8'} ) }}
 
             </div>
+
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 {{ form_label(form.messager, "Qui prend le message ?", {'label_attr': {'class': 'mdl-textfield__label'}}) }}

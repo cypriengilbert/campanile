@@ -58,7 +58,7 @@
             <tbody>
 
 
-
+            {% if not is_granted('ROLE_SUPER_ADMIN') %}
 
             {% for message in ListeMessage %}
 
@@ -68,6 +68,7 @@
 
 
                     {% if message.destinataire == app.user.username %}
+
                         {% if message.isarchived == 0 %}
 
 
@@ -80,7 +81,11 @@
                                 <div class="mdl-tooltip" for="description_tableau{{ message.id }}">
                                     {{ message.description }}
                                 </div>
-                                <td>{{ message.destinataire.prenom }}</td>
+                                <td>
+                                    {% for Destinataire in message.destinataire %}
+                                        {{ Destinataire.prenom }} <br>
+                                    {% endfor %}
+                                </td>
                                 <td>{{ message.messager }}</td>
 
                                 <td>
@@ -102,8 +107,62 @@
 
 
 
-            {% endfor %}
 
+            {% endfor %}
+            {% endif %}
+
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+
+                {% for message in ListeMessage %}
+
+
+
+
+
+
+
+
+                        {% if message.isarchived == 0 %}
+
+
+
+                            <tr>
+
+
+
+                                <td style="max-width: 200px;overflow:hidden" id="description_tableau{{ message.id }}" >{{ message.description }}</td>
+                                <div class="mdl-tooltip" for="description_tableau{{ message.id }}">
+                                    {{ message.description }}
+                                </div>
+                                <td>
+                                    {% for Destinataire in message.destinataire %}
+                                        {{ Destinataire.prenom }} <br>
+                                    {% endfor %}
+                                </td>
+                                <td>{{ message.messager }}</td>
+
+                                <td>
+                                    <a style="color: black;" href="{{ path('end_message',{'id':message.id} ) }}"><i id="archived{{ message.id }}" class="fa fa-check-square-o" aria-hidden="true"></i></a>
+                                    <div class="mdl-tooltip" for="archived{{ message.id }}">
+                                        Archiver le message
+                                    </div>
+                                    <a style="color: black;" href="{{ path('message_view',{'id':message.id} ) }}"><i id="details{{ message.id }}" class="fa fa-eye" aria-hidden="true"></i></a></td>
+                                <div class="mdl-tooltip" for="details{{ message.id }}">
+                                    Afficher les details
+                                </div>
+
+                                <td>{{ message.dateReception|date("d/m/Y") }}</td>
+
+                            </tr>
+
+
+                    {% endif %}
+
+
+
+
+                {% endfor %}
+            {% endif %}
 
             </tbody>
         </table>
@@ -149,7 +208,7 @@
 
 
 
-                    {% if message.destinataire == app.user.username %}
+                    {% if message.destinataire == app.user.username or is_granted('ROLE_SUPER_ADMIN') %}
                         {% if message.isarchived == 1 %}
 
 
@@ -159,7 +218,11 @@
 
 
                                 <td>{{ message.description }}</td>
-                                <td>{{ message.destinataire.prenom }}</td>
+                                <td>
+                                    {% for Destinataire in message.destinataire %}
+                                        {{ Destinataire.prenom }} <br>
+                                    {% endfor %}
+                                </td>
                                 <td>{{ message.messager }}</td>
 
                                 <td>

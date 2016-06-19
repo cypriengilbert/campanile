@@ -2,6 +2,8 @@
 
 {% block body %}
 
+    {% if ListeMessage.destinataire == app.user.username or is_granted('ROLE_ADMIN')%}
+
     <style>
         .demo-card-wide.mdl-card {
             width: 98%;
@@ -23,7 +25,12 @@
 
     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
         <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text">{{ ListeMessage.destinataire }}</h2>
+            <h2 class="mdl-card__title-text">
+
+                    {% for Destinataire in ListeMessage.destinataire %}
+                        {{ Destinataire.prenom }} -
+                    {% endfor %}
+                </h2>
         </div>
         <div class="mdl-card__supporting-text">
             {{ ListeMessage.description }}
@@ -51,4 +58,8 @@
 
 
     </div>
+
+{% else %}
+Accès refusé
+{% endif %}
 {% endblock %}

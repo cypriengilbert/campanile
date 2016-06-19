@@ -4,10 +4,12 @@ namespace CourrierBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use CourrierBundle\Entity\Client;
 use UserBundle\Entity\User;
+use Doctrine\ORM\EntityRepository;
+
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
@@ -24,6 +26,7 @@ class CourrierType extends AbstractType
       ->add('description',    'textarea',  array('required'    => false))
       ->add('position',   'text')
       ->add('title', 'text')
+      ->add('commentaire',    'textarea',  array('required'    => false))
       ->add('client', new ClientType())
       ->add('destinatairelocal', EntityType::class, array(
                                      // query choices from this entity
@@ -31,15 +34,21 @@ class CourrierType extends AbstractType
 
                                      // use the User.username property as the visible option string
                                      'choice_label' => 'prenom',
+                                      'query_builder' => function (EntityRepository $er) {
+                                       return $er->createQueryBuilder('u')
+                                        ->where("u.prenom != 'reception'")
+                                        ->orderBy('u.prenom', 'ASC');
+                                             },
 
 
                                      'required' => false,
                                  ))
 
+
 ;
   }
 
-  public function setDefaultOptions(OptionsResolverInterface $resolver)
+  public function configureOptions(OptionsResolver $resolver)
   {
     $resolver->setDefaults(array(
       'data_class' => 'CourrierBundle\Entity\Courrier'

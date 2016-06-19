@@ -3,6 +3,8 @@
 namespace CourrierBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Doctrine\ORM\EntityRepository;
+
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -18,11 +20,20 @@ class MessageType extends AbstractType
 
                                // use the User.username property as the visible option string
                                'choice_label' => 'prenom',
+                                'query_builder' => function (EntityRepository $er) {
+                                                                      return $er->createQueryBuilder('u')
+                                                                       ->where("u.prenom != 'reception'")
+                                                                       ->orderBy('u.prenom', 'ASC');
+                                                                            },
+
 
                                // used to render a select box, check boxes or radios
-                               // 'multiple' => true,
+                               'multiple' => true,
                                // 'expanded' => true,
+
                            ))
+
+
       ->add('description',    'textarea')
       ->add('messager',    'text')
       ->add('sujet',    'text')

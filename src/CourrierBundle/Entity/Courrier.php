@@ -91,6 +91,15 @@ class Courrier
      */
     private $description;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="commentaire", type="string", length=255, nullable=true)
+     */
+    private $commentaire;
+
+
         /**
          * @var string
          *
@@ -343,6 +352,31 @@ class Courrier
     public function getDescription()
     {
         return $this->description;
+    }
+
+
+
+    /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     * @return Courrier
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
     }
 
     /**

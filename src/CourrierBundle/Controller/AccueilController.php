@@ -112,13 +112,19 @@ class AccueilController extends Controller
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
             if ($newcourrier->getDestinatairelocal() != null){
 
-                                        $newDestinataire       = $newcourrier->getDestinatairelocal()->getEmail();
-                                        $newDestinatairePrenom = $newcourrier->getDestinatairelocal()->getPrenom();
-                                        $newEmplacement = $newcourrier->getPosition();
-                                        $newReceptioniste = $newcourrier->getAuteur();
-                                        //Envoie mail
-                                        $message               = \Swift_Message::newInstance()->setSubject('Nouvelle reception en attente pour vous à la reception')->setFrom('cyprien@cypriengilbert.com')->setTo($newDestinataire)->setBody('Bonjour ' . $newDestinatairePrenom . '<br><br> Une réception a été faite pour vous à la réception par '.$newReceptioniste.' .', 'text/html');
-                                        $this->get('mailer')->send($message);
+              $newDestinataire       = $newcourrier->getDestinatairelocal()->getEmail();
+                  $newDestinatairePrenom = $newcourrier->getDestinatairelocal()->getPrenom();
+                  $newEmplacement = $newcourrier->getPosition();
+                  $newDate = $newcourrier->getInitialDate();
+                  $newTitle = $newcourrier->getTitle();
+
+
+
+                  $newDetails = $newcourrier->getDescription();
+                 $newReceptioniste = $newcourrier->getAuteur();
+               //Envoie mail
+                  $message               = \Swift_Message::newInstance()->setSubject('Nouvelle reception en attente pour vous à la reception: '.$newTitle)->setFrom('cyprien@cypriengilbert.com')->setTo($newDestinataire)->setBody('Bonjour <br><br> Une réception a été faite pour vous à la réception par '.$newReceptioniste.' .<br> Voici les détails : '.$newDetails.'. <br>Elle est actuellement stocké ici : '.$newEmplacement.'<br>La reception a été faite à '.$newDate->format('H:i').' le '.$newDate->format('d/m/Y').'. <br>', 'text/html');
+                  $this->get('mailer')->send($message);
 
                              }
 
@@ -151,15 +157,31 @@ class AccueilController extends Controller
             $em->persist($newmessage);
             $em->flush();
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+
+            $arr = $newmessage->getDestinataire()->toArray();
+
+
             $newId                 = $newmessage->getId();
-            $newDestinataire       = $newmessage->getDestinataire()->getEmail();
-            $newDestinatairePrenom = $newmessage->getDestinataire()->getPrenom();
             $newDescription        = $newmessage->getDescription();
             $newExpediteur         = $newmessage->getExpediteur();
+            $newDate               = $newmessage->getDateReception();
+            $newSujet              = $newmessage->getSujet();
+            $newSociete            = $newmessage-> getSociete();
+            $newMessager           = $newmessage-> getMessager();
+            if ($newmessage->getContact()){
             $newContact            = $newmessage->getContact();
-            //Envoie mail
-            $message               = \Swift_Message::newInstance()->setSubject('Nouveau message provenant de la réception')->setFrom('cyprien@cypriengilbert.com')->setTo($newDestinataire)->setBody('Bonjour ' . $newDestinatairePrenom . '<br><br> Un nouveau message a été enregistré pour vous à la réception <br> Voici le message : ' . $newDescription . '<br><br> Vous pouvez recontacter ' . $newExpediteur . ' en le contactant comme ceci : ' . $newContact, 'text/html');
+            }
+            else {
+            $newContact            = $newmessage->getPhone();
+            }
+            //Envoie mails
+            foreach ($arr as $a => $value) {
+                        $newDestinataire       = $value->getEmail();
+
+            $message               = \Swift_Message::newInstance()->setSubject('Nouveau message provenant de la réception: '.$newSujet)->setFrom('cyprien@cypriengilbert.com')->setTo($newDestinataire)->setBody('Bonjour <br><br> Un nouveau message a été enregistré pour vous à la réception par '.$newMessager.' à '.$newDate->format('H:i').' le '.$newDate->format('d/m/Y').'   <br> Sujet: '.$newSujet.' <br> Message : ' . $newDescription . '<br><br> Vous pouvez recontacter ' . $newExpediteur . ' de la société '.$newSociete.' en le contactant comme ceci : ' . $newContact. '<br><br> Pour plus de détails, rendez vous <a href="http://campanile.cypriengilbert.com/message/'.$newId.'">ici</a>', 'text/html');
             $this->get('mailer')->send($message);
+
+                        }
             return $this->redirect($this->generateUrl('accueil', array(
                 'validate' => 'message'
             )));

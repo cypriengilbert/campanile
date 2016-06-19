@@ -4,6 +4,8 @@ namespace CourrierBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use UserBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 
 /**
@@ -92,10 +94,10 @@ class Message
 
 
      /**
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
-     * @ORM\JoinColumn(nullable=false)
-     */
-      private $destinataire;
+       * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", cascade={"persist"})
+       */
+
+      private $destinataires;
 
 
     /**
@@ -184,18 +186,6 @@ class Message
 
 
 
-    public function setDestinataire(User $destinataire)
-    {
-        $this->destinataire = $destinataire;
-
-        return $this;
-    }
-
-
-    public function getDestinataire()
-    {
-        return $this->destinataire;
-    }
 
     /**
      * Set expediteur
@@ -343,5 +333,37 @@ class Message
         {
             return $this->phone;
         }
+
+
+
+
+
+         public function __construct()
+          {
+            $this->destinataires = new ArrayCollection();
+          }
+
+          // Notez le singulier, on ajoute une seule catégorie à la fois
+          public function addDestinataire(User $destinataire)
+          {
+            // Ici, on utilise l'ArrayCollection vraiment comme un tableau
+            $this->destinataires[] = $destinataire;
+
+            return $this;
+          }
+
+          public function removeDestinataire(User $destinataire)
+          {
+            // Ici on utilise une méthode de l'ArrayCollection, pour supprimer la catégorie en argument
+            $this->destinataires->removeElement($destinataire);
+          }
+
+          // Notez le pluriel, on récupère une liste de catégories ici !
+          public function getDestinataire()
+          {
+            return $this->destinataires;
+          }
+
+
 }
 

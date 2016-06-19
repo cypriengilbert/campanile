@@ -16,7 +16,6 @@ class ClientType extends AbstractType
     {
         $builder
             ->add('nomclient')
-            ->add('prenomclient')
             ->add('societeclient')
             ->add('arrivee', 'date', array('widget' => 'single_text',  'required' => false))
         ;

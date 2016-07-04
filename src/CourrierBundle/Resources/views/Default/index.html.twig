@@ -60,6 +60,15 @@
 
 
                     <tr>
+                    <td>
+                        {% if courrier.client %}
+                        Externe
+                        {% else %}
+
+                        Interne
+                        {% endif %}
+
+                    </td>
                     <td>{{ courrier.title }}</td>
                     <td>{{ courrier.client.arrivee|date("d/m/Y") }}</td>
 
@@ -180,7 +189,7 @@
 
                         <th>Message</th>
                         <th>Destinataire</th>
-                        <th>Messager</th>
+                        <th>Réceptionniste</th>
                         <th>Action</th>
 
 

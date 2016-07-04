@@ -39,7 +39,7 @@ class CourrierType extends AbstractType
                                         ->where("u.prenom != 'reception'")
                                         ->orderBy('u.prenom', 'ASC');
                                              },
-
+                                    'multiple' => true,
 
                                      'required' => false,
                                  ))

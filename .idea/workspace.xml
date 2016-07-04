@@ -3,19 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="d3fbdf8d-216f-4d72-bdf9-fd70418adf77" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/security.yml" afterPath="$PROJECT_DIR$/app/config/security.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CourrierBundle/Controller/AccueilController.php" afterPath="$PROJECT_DIR$/src/CourrierBundle/Controller/AccueilController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CourrierBundle/Entity/Courrier.php" afterPath="$PROJECT_DIR$/src/CourrierBundle/Entity/Courrier.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CourrierBundle/Entity/Message.php" afterPath="$PROJECT_DIR$/src/CourrierBundle/Entity/Message.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CourrierBundle/Form/Type/ClientType.php" afterPath="$PROJECT_DIR$/src/CourrierBundle/Form/Type/ClientType.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CourrierBundle/Form/Type/CourrierType.php" afterPath="$PROJECT_DIR$/src/CourrierBundle/Form/Type/CourrierType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CourrierBundle/Form/Type/MessageType.php" afterPath="$PROJECT_DIR$/src/CourrierBundle/Form/Type/MessageType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/AddCourrier.html.twig" afterPath="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/AddCourrier.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/AddMessage.html.twig" afterPath="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/AddMessage.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/index.html.twig" afterPath="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/index.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewAllCourrier.html.twig" afterPath="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewAllCourrier.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewAllMessage.html.twig" afterPath="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewAllMessage.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewMessage.html.twig" afterPath="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewMessage.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewCourrier.html.twig" afterPath="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewCourrier.html.twig" />
     </list>
     <ignored path="ObjectPerdu.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,24 +32,48 @@
       <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="48" column="19" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
-              <folding>
-                <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#6;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="3060">
+              <caret line="204" column="72" selection-start-line="204" selection-start-column="72" selection-end-line="204" selection-end-column="72" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="viewAllMessage.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewAllMessage.html.twig">
+      <file leaf-file-name="Courrier.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Entity/Courrier.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="224" column="37" selection-start-line="224" selection-start-column="37" selection-end-line="224" selection-end-column="37" />
+            <state relative-caret-position="6675">
+              <caret line="445" column="13" selection-start-line="445" selection-start-column="13" selection-end-line="445" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CourrierType.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Form/Type/CourrierType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="660">
+              <caret line="44" column="35" selection-start-line="44" selection-start-column="35" selection-end-line="44" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageType.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Form/Type/MessageType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="30" column="50" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Message.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Entity/Message.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5145">
+              <caret line="343" column="60" selection-start-line="343" selection-start-column="47" selection-end-line="343" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -65,18 +82,18 @@
       <file leaf-file-name="viewCourrier.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewCourrier.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+            <state relative-caret-position="570">
+              <caret line="38" column="10" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccueilController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AccueilController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Controller/AccueilController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="128" column="30" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
+            <state relative-caret-position="3000">
+              <caret line="200" column="25" selection-start-line="200" selection-start-column="25" selection-end-line="200" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -85,48 +102,18 @@
       <file leaf-file-name="viewAllCourrier.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewAllCourrier.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="55" column="31" selection-start-line="48" selection-start-column="16" selection-end-line="55" selection-end-column="31" />
-              <folding>
-                <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#6;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#6;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="3705">
+              <caret line="247" column="44" selection-start-line="245" selection-start-column="31" selection-end-line="247" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="template.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="template.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/template.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="292" column="0" selection-start-line="292" selection-start-column="0" selection-end-line="292" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="viewMessage.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewMessage.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parameters.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="296">
+              <caret line="288" column="39" selection-start-line="288" selection-start-column="23" selection-end-line="288" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -137,16 +124,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
               <caret line="11" column="40" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddCourrier.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/AddCourrier.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="590">
-              <caret line="92" column="144" selection-start-line="92" selection-start-column="144" selection-end-line="92" selection-end-column="144" />
               <folding />
             </state>
           </provider>
@@ -206,22 +183,22 @@
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/src/CourrierBundle/Entity/Client.php" />
-        <option value="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewCourrier.html.twig" />
         <option value="$PROJECT_DIR$/src/CourrierBundle/Form/Type/ModifyCourrierType.php" />
         <option value="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/ModifyCourrier.html.twig" />
         <option value="$PROJECT_DIR$/src/CourrierBundle/Form/Type/ClientType.php" />
-        <option value="$PROJECT_DIR$/src/CourrierBundle/Entity/Courrier.php" />
-        <option value="$PROJECT_DIR$/src/CourrierBundle/Form/Type/CourrierType.php" />
-        <option value="$PROJECT_DIR$/src/CourrierBundle/Entity/Message.php" />
         <option value="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/AddMessage.html.twig" />
         <option value="$PROJECT_DIR$/src/CourrierBundle/Form/Type/MessageType.php" />
         <option value="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/AddCourrier.html.twig" />
         <option value="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewMessage.html.twig" />
         <option value="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewAllMessage.html.twig" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
-        <option value="$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/template.html.twig" />
-        <option value="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewAllCourrier.html.twig" />
         <option value="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/CourrierBundle/Form/Type/CourrierType.php" />
+        <option value="$PROJECT_DIR$/src/CourrierBundle/Entity/Message.php" />
+        <option value="$PROJECT_DIR$/src/CourrierBundle/Entity/Courrier.php" />
+        <option value="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewAllCourrier.html.twig" />
+        <option value="$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/template.html.twig" />
+        <option value="$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewCourrier.html.twig" />
         <option value="$PROJECT_DIR$/src/CourrierBundle/Controller/AccueilController.php" />
       </list>
     </option>
@@ -233,9 +210,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
     <option name="width" value="1920" />
-    <option name="height" value="973" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -262,7 +238,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -762,6 +737,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -770,7 +746,8 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SearchEverywhereHistoryKey" value="tem&#9;FILE&#9;file:///Users/apple/Documents/Symfony/ObjectPerdu/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/template.html.twig&#10;temp&#9;FILE&#9;file:///Users/apple/Documents/Symfony/ObjectPerdu/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/template.html.twig&#10;templa&#9;FILE&#9;file:///Users/apple/Documents/Symfony/ObjectPerdu/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/template.html.twig&#10;index&#9;FILE&#9;file:///Users/apple/Documents/Symfony/ObjectPerdu/src/CourrierBundle/Resources/views/Default/index.html.twig&#10;templ&#9;FILE&#9;file:///Users/apple/Documents/Symfony/ObjectPerdu/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/template.html.twig&#10;template&#9;FILE&#9;file:///Users/apple/Documents/Symfony/ObjectPerdu/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/template.html.twig" />
+    <property name="SearchEverywhereHistoryKey" value="temp&#9;FILE&#9;file:///Users/apple/Documents/Symfony/ObjectPerdu/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/template.html.twig&#10;te&#9;FILE&#9;file:///Users/apple/Documents/Symfony/ObjectPerdu/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/template.html.twig&#10;tem&#9;FILE&#9;file:///Users/apple/Documents/Symfony/ObjectPerdu/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/template.html.twig&#10;templa&#9;FILE&#9;file:///Users/apple/Documents/Symfony/ObjectPerdu/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/template.html.twig&#10;index&#9;FILE&#9;file:///Users/apple/Documents/Symfony/ObjectPerdu/src/CourrierBundle/Resources/views/Default/index.html.twig&#10;templ&#9;FILE&#9;file:///Users/apple/Documents/Symfony/ObjectPerdu/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/template.html.twig&#10;template&#9;FILE&#9;file:///Users/apple/Documents/Symfony/ObjectPerdu/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/template.html.twig" />
+    <property name="FullScreen" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -861,18 +838,20 @@
       <workItem from="1465671472844" duration="6191000" />
       <workItem from="1465718149677" duration="17092000" />
       <workItem from="1465836394862" duration="5000" />
-      <workItem from="1466346762232" duration="7993000" />
+      <workItem from="1466346762232" duration="9105000" />
+      <workItem from="1466442779317" duration="6729000" />
+      <workItem from="1466614619013" duration="6000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94659000" />
+    <option name="totallyTimeSpent" value="102506000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="973" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1041,13 +1020,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/mdl/material.min.js.map">
+      <provider editor-type-id="sourcemapFileViewerProvider">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-25829">
           <caret line="0" column="333714" selection-start-line="0" selection-start-column="333714" selection-end-line="0" selection-end-column="333714" />
         </state>
-      </provider>
-      <provider editor-type-id="sourcemapFileViewerProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/app.php">
@@ -1117,7 +1096,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1020">
           <caret line="68" column="12" selection-start-line="68" selection-start-column="12" selection-end-line="68" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1125,7 +1103,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="627">
           <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1133,39 +1110,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Entity/Courrier.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="343" column="21" selection-start-line="343" selection-start-column="21" selection-end-line="343" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Form/Type/CourrierType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Entity/Message.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="136" column="7" selection-start-line="136" selection-start-column="7" selection-end-line="136" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Form/Type/MessageType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1173,15 +1117,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-90">
           <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/AddCourrier.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
+        <state relative-caret-position="1380">
           <caret line="92" column="144" selection-start-line="92" selection-start-column="144" selection-end-line="92" selection-end-column="144" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1189,23 +1131,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewAllMessage.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
+        <state relative-caret-position="3360">
           <caret line="224" column="37" selection-start-line="224" selection-start-column="37" selection-end-line="224" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewCourrier.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1213,7 +1145,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1225,50 +1156,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/template.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Form/Type/MessageType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="292" column="0" selection-start-line="292" selection-start-column="0" selection-end-line="292" selection-end-column="0" />
+        <state relative-caret-position="450">
+          <caret line="30" column="50" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Form/Type/CourrierType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" column="35" selection-start-line="44" selection-start-column="35" selection-end-line="44" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Entity/Message.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5145">
+          <caret line="343" column="60" selection-start-line="343" selection-start-column="47" selection-end-line="343" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Entity/Courrier.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6675">
+          <caret line="445" column="13" selection-start-line="445" selection-start-column="13" selection-end-line="445" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3060">
+          <caret line="204" column="72" selection-start-line="204" selection-start-column="72" selection-end-line="204" selection-end-column="72" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewAllCourrier.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="55" column="31" selection-start-line="48" selection-start-column="16" selection-end-line="55" selection-end-column="31" />
-          <folding>
-            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#6;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#6;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="3705">
+          <caret line="247" column="44" selection-start-line="245" selection-start-column="31" selection-end-line="247" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/index.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Resources/views/Default/viewCourrier.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="48" column="19" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
-          <folding>
-            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#6;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="570">
+          <caret line="38" column="10" selection-start-line="38" selection-start-column="10" selection-end-line="38" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CourrierBundle/Controller/AccueilController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="128" column="30" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
+        <state relative-caret-position="3000">
+          <caret line="200" column="25" selection-start-line="200" selection-start-column="25" selection-end-line="200" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/template.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="288" column="39" selection-start-line="288" selection-start-column="23" selection-end-line="288" selection-end-column="39" />
           <folding />
         </state>
       </provider>

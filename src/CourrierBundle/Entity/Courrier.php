@@ -4,6 +4,8 @@ namespace CourrierBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use UserBundle\Entity\User;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * Courrier
@@ -35,11 +37,11 @@ class Courrier
        */
       private $client;
 
-            /**
-            * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
-            * @ORM\JoinColumn(nullable=true)
-            */
-             private $destinatairelocal;
+             /**
+             * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", cascade={"persist"})
+             */
+
+             private $destinataireslocals;
 
 
     /**
@@ -419,16 +421,29 @@ class Courrier
 
 
 
-    public function setDestinatairelocal(User $destinatairelocal)
-    {
-        $this->destinatairelocal = $destinatairelocal;
+   public function __construct()
+            {
+              $this->destinataireslocals = new ArrayCollection();
+            }
 
-        return $this;
-    }
+            // Notez le singulier, on ajoute une seule catégorie à la fois
+            public function addDestinataireLocal(User $destinatairelocal)
+            {
+              // Ici, on utilise l'ArrayCollection vraiment comme un tableau
+              $this->destinataireslocals[] = $destinatairelocal;
 
+              return $this;
+            }
 
-    public function getDestinatairelocal()
-    {
-        return $this->destinatairelocal;
-    }
+            public function removeDestinataireLocal(User $destinatairelocal)
+            {
+              // Ici on utilise une méthode de l'ArrayCollection, pour supprimer la catégorie en argument
+              $this->destinataireslocals->removeElement($destinatairelocal);
+            }
+
+            // Notez le pluriel, on récupère une liste de catégories ici !
+            public function getDestinatairelocal()
+            {
+              return $this->destinataireslocals;
+            }
 }

@@ -75,9 +75,11 @@
                     <td>
                         {% if courrier.client %}
                         Externe
-                        {% elseif courrier.destinatairelocal %}
+                        {% else %}
+
                         Interne
                         {% endif %}
+
                     </td>
                     <td>{{ courrier.title }}</td>
                     {% if courrier.client %}
@@ -88,14 +90,16 @@
 
 
                     </td>
-                    {% elseif courrier.destinatairelocal %}
+                    {% else %}
                         <td data-sort-value="0"><i class="fa fa-ban" aria-hidden="true"></i></td>
                     {% endif %}
                     <td>
                         {% if courrier.client %}
                         {{ courrier.client.nomclient }} {{ courrier.client.prenomclient }}
-                        {% elseif courrier.destinatairelocal %}
-                            {{ courrier.destinatairelocal.prenom }} {{ courrier.destinatairelocal.nom }}
+                        {% else %}
+                        {% for destinatairelocal in courrier.destinatairelocal %}
+                            {{ destinatairelocal.prenom }} {{ destinatairelocal.nom }}<br>
+                        {% endfor %}
                         {% endif %}
                     </td>
                     <td>{{ courrier.position }}</td>
@@ -239,7 +243,9 @@
                             {% if courrier.client %}
                                 {{ courrier.client.nomclient }} {{ courrier.client.prenomclient }}
                             {% elseif courrier.destinatairelocal %}
-                                {{ courrier.destinatairelocal.prenom }} {{ courrier.destinatairelocal.nom }}
+                                {% for destinatairelocal in courrier.destinatairelocal %}
+                                    {{ destinatairelocal.prenom }} {{ destinatairelocal.nom }}<br>
+                                {% endfor %}
                             {% endif %}
                         </td>
                         <td>{{ courrier.position }}</td>

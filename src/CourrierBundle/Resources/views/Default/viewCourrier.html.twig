@@ -23,13 +23,14 @@
 
 <div class="demo-card-wide mdl-card mdl-shadow--2dp">
     <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text">{{ ListeCourrier.title }} - {% if ListeCourrier.etat == 0  %}
+        <h2 class="mdl-card__title-text">{{ ListeCourrier.title }} -  {% if ListeCourrier.etat == 0  %}
 
              Remis le {{ ListeCourrier.finalDate|date("d/m/Y") }} ({{ ListeCourrier.finalDate|date("H") }}h{{ ListeCourrier.finalDate|date("i") }}) à {{ ListeCourrier.remisa }} par {{ ListeCourrier.remispar }}
 
             {% endif %}</h2>
 
     </div>
+
     <div class="mdl-card__supporting-text">
         {{ ListeCourrier.description }}
     </div>
@@ -46,9 +47,13 @@
     <div class="mdl-card__supporting-text">
         Destinataire : {{ ListeCourrier.client.nomclient }} {{ ListeCourrier.client.prenomclient }} -- {% if ListeCourrier.etat == 0 %} Arrive le {{ ListeCourrier.client.arrivee|date("d/m/Y") }} {% endif %}
     </div>
-    {% elseif ListeCourrier.destinatairelocal %}
+    {% else %}
         <div class="mdl-card__supporting-text">
-            Destinataire : {{ ListeCourrier.destinatairelocal.prenom }} {{ ListeCourrier.destinatairelocal.prenom  }}
+            Destinataire : <br>
+            {% for destinatairelocal in ListeCourrier.destinatairelocal %}
+                {{ destinatairelocal.prenom }} {{ destinatairelocal.prenom  }}<br>
+            {% endfor %}
+
         </div>
     {% endif %}
 
@@ -77,7 +82,7 @@
                     {% else %}
                         <i class="material-icons">timer</i>
                 {% endif %}
-            {% elseif ListeCourrier.destinatairelocal %}
+            {% else %}
                 <i class="material-icons">timer</i>
             {% endif %}
 
@@ -94,4 +99,5 @@
     </div>
 
 </div>
+
 {% endblock %}

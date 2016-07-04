@@ -93,10 +93,9 @@ class Message
     private $messager;
 
 
-     /**
-       * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", cascade={"persist"})
-       */
-
+    /**
+    * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", cascade={"persist"})
+    */
       private $destinataires;
 
 
@@ -366,4 +365,3 @@ class Message
 
 
 }
-

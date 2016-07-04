@@ -96,13 +96,15 @@ class AccueilController extends Controller
         $datetime    = new \Datetime('now');
         $newcourrier = new Courrier();
         $newcourrier->setInitialDate($datetime);
+        $isquentin = 0;
 
         $newcourrier->setEtat(1);
         $form = $this->get('form.factory')->create('CourrierBundle\Form\Type\CourrierType', $newcourrier);
 
 
         if ($form->handleRequest($request)->isValid()) {
-         if ($newcourrier->getDestinatairelocal() != null){
+        $arr = $newcourrier->getDestinataireLocal()->toArray();
+         if ($arr != null){
                 $newcourrier->setClient(null);
                    $newcourrier->setEtat(0);
                 }
@@ -111,9 +113,8 @@ class AccueilController extends Controller
             $em->flush();
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
             if ($newcourrier->getDestinatairelocal() != null){
+            $arr = $newcourrier->getDestinataireLocal()->toArray();
 
-              $newDestinataire       = $newcourrier->getDestinatairelocal()->getEmail();
-                  $newDestinatairePrenom = $newcourrier->getDestinatairelocal()->getPrenom();
                   $newEmplacement = $newcourrier->getPosition();
                   $newDate = $newcourrier->getInitialDate();
                   $newTitle = $newcourrier->getTitle();
@@ -122,14 +123,25 @@ class AccueilController extends Controller
 
                   $newDetails = $newcourrier->getDescription();
                  $newReceptioniste = $newcourrier->getAuteur();
+                  foreach ($arr as $a => $value) {
+                                         $newDestinataire       = $value->getEmail();
+                                         if ($newDestinataire == "directeur.exploitation.roissy@campanile.fr"){
+
+                                                                 $isquentin = 1;
+                                                                 }
                //Envoie mail
                   $message               = \Swift_Message::newInstance()->setSubject('Nouvelle reception en attente pour vous à la reception: '.$newTitle)->setFrom('cyprien@cypriengilbert.com')->setTo($newDestinataire)->setBody('Bonjour <br><br> Une réception a été faite pour vous à la réception par '.$newReceptioniste.' .<br> Voici les détails : '.$newDetails.'. <br>Elle est actuellement stocké ici : '.$newEmplacement.'<br>La reception a été faite à '.$newDate->format('H:i').' le '.$newDate->format('d/m/Y').'. <br>', 'text/html');
                   $this->get('mailer')->send($message);
 
-                             }
+                  if ($isquentin != 1){
+                                                              $message               = \Swift_Message::newInstance()->setSubject('[Copie]Nouvelle reception en attente à la reception: '.$newTitle)->setFrom('cyprien@cypriengilbert.com')->setTo('directeur.exploitation.roissy@campanile.fr')->setBody('Bonjour <br><br> Une réception a été faite à la réception par '.$newReceptioniste.' .<br> Voici les détails : '.$newDetails.'. <br>Elle est actuellement stocké ici : '.$newEmplacement.'<br>La reception a été faite à '.$newDate->format('H:i').' le '.$newDate->format('d/m/Y').'. <br>', 'text/html');
+                                                                               $this->get('mailer')->send($message);
+                                                                  }
 
+                             }
+}
             return $this->redirect($this->generateUrl('accueil', array(
-                'validate' => 'réception'
+                'validate' => 'Nouvelle réception bien enregistrée'
             )));
         }
         return $this->render('CourrierBundle:Default:AddCourrier.html.twig', array(
@@ -145,6 +157,8 @@ class AccueilController extends Controller
 
     public function addMessageAction(Request $request)
     {
+         $isquentin = 0;
+         $isrh = 0;
         $datetime   = new \Datetime('now');
         $user       = $this->container->get('security.context')->getToken()->getUser()->getUsername();
         $newmessage = new Message();
@@ -178,12 +192,25 @@ class AccueilController extends Controller
             foreach ($arr as $a => $value) {
                         $newDestinataire       = $value->getEmail();
 
+                        if ($newDestinataire == "directeur.exploitation.roissy@campanile.fr"){
+
+                        $isquentin = 1;
+                        }
+                        if ($newDestinataire == "rh.roissy@campanile.fr"){
+                        $isrh = 1;
+                        }
+
             $message               = \Swift_Message::newInstance()->setSubject('Nouveau message provenant de la réception: '.$newSujet)->setFrom('cyprien@cypriengilbert.com')->setTo($newDestinataire)->setBody('Bonjour <br><br> Un nouveau message a été enregistré pour vous à la réception par '.$newMessager.' à '.$newDate->format('H:i').' le '.$newDate->format('d/m/Y').'   <br> Sujet: '.$newSujet.' <br> Message : ' . $newDescription . '<br><br> Vous pouvez recontacter ' . $newExpediteur . ' de la société '.$newSociete.' en le contactant comme ceci : ' . $newContact. '<br><br> Pour plus de détails, rendez vous <a href="http://campanile.cypriengilbert.com/message/'.$newId.'">ici</a>', 'text/html');
             $this->get('mailer')->send($message);
 
                         }
+                        if ($isquentin != 1 AND $isrh == 1){
+                                             $message               = \Swift_Message::newInstance()->setSubject('[Copie]Nouveau message provenant de la réception: '.$newSujet)->setFrom('cyprien@cypriengilbert.com')->setTo('directeur.exploitation.roissy@campanile.fr')->setBody('Bonjour <br><br> Un nouveau message dont vous êtes en copie a été enregistré à la réception par '.$newMessager.' à '.$newDate->format('H:i').' le '.$newDate->format('d/m/Y').'   <br> Sujet: '.$newSujet.' <br> Message : ' . $newDescription . '<br><br> Vous pouvez recontacter ' . $newExpediteur . ' de la société '.$newSociete.' en le contactant comme ceci : ' . $newContact. '<br><br> Pour plus de détails, rendez vous <a href="http://campanile.cypriengilbert.com/message/'.$newId.'">ici</a>', 'text/html');
+                                                         $this->get('mailer')->send($message);
+                                                }
+
             return $this->redirect($this->generateUrl('accueil', array(
-                'validate' => 'message'
+                'validate' => 'Nouveau message bien enregistré'
             )));
         }
         return $this->render('CourrierBundle:Default:AddMessage.html.twig', array(
@@ -216,7 +243,8 @@ class AccueilController extends Controller
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
             $newId = $courrier->getId();
             return $this->redirect($this->generateUrl('courrier_view', array(
-                'end_validate' => 'reception'
+                'id' => $id,
+                'validate' => 'Reception clôturée'
             )));
         }
         return $this->render('CourrierBundle:Default:EndCourrier.html.twig', array(
@@ -244,7 +272,8 @@ class AccueilController extends Controller
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
             $newId = $courrier->getId();
             return $this->redirect($this->generateUrl('courrier_view', array(
-                'modify_validate' => 'reception'
+             'id' => $id,
+                'validate' => 'Reception modifiée'
             )));
         }
         return $this->render('CourrierBundle:Default:ModifyCourrier.html.twig', array(
@@ -271,7 +300,7 @@ class AccueilController extends Controller
         $em->flush();
         $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
         return $this->redirect($this->generateUrl('accueil', array(
-                                                                           'end_validate' => 'message'
+                                                                           'validate' => 'Message cloturé'
                                                                        )));
     }
 

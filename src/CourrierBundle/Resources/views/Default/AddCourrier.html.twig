@@ -64,7 +64,7 @@
 
             <div>
             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1" style="margin-right:20px;">
-                <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1"  onclick="hideexterne()">
+                <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" required onclick="hideexterne()">
                 <span class="mdl-radio__label">Interne</span>
             </label>
 
@@ -73,12 +73,14 @@
                 <span class="mdl-radio__label">Client externe</span>
             </label>
 
+
+
             </div>
             <div id="clientexterne" style="display:none">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 {{ form_label(form.client.nomclient, "Nom du destinataire", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
                 {{ form_errors(form.client.nomclient) }}
-                {{ form_widget(form.client.nomclient, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                {{ form_widget(form.client.nomclient, {'attr': {'class': 'mdl-textfield__input', 'id':'champsNomClient'}}) }}
 
             </div>
 
@@ -92,7 +94,7 @@
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 {{ form_label(form.client.arrivee, "Arrivée du destinataire", {'label_attr': {'class': 'mdl-textfield__label', 'style':'top:4px'}}) }}
                 {{ form_errors(form.client.arrivee) }}
-                {{ form_widget(form.client.arrivee, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                {{ form_widget(form.client.arrivee, {'attr': {'class': 'mdl-textfield__input', 'id':'champsDateArrivee'}}) }}
 
             </div>
 
@@ -100,7 +102,7 @@
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="destinataireinterne" style="display:none">
                 {{ form_label(form.destinatairelocal, "Destinataire", {'label_attr': {'class': 'mdl-textfield__label'}}) }}
                 {{ form_errors(form.destinatairelocal) }}
-                {{ form_widget(form.destinatairelocal, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                {{ form_widget(form.destinatairelocal, {'attr': {'class': 'mdl-textfield__input' }}) }}
 
             </div>
 
@@ -126,6 +128,9 @@
     <script type="text/javascript">
         function hideinterne() {
             document.getElementById('destinataireinterne').style.display='none';
+            document.getElementById("accueil_client_arrivee").required = true;
+            document.getElementById("accueil_client_nomclient").required = true;
+            document.getElementById("accueil_destinatairelocal").required = false;
 
             document.getElementById('clientexterne').style.display='';
 
@@ -133,6 +138,9 @@
 
         function hideexterne() {
             document.getElementById('clientexterne').style.display='none';
+            document.getElementById("accueil_destinatairelocal").required = true;
+            document.getElementById("accueil_client_arrivee").required = false;
+            document.getElementById("accueil_client_nomclient").required = false;
 
             document.getElementById('destinataireinterne').style.display='';
 
@@ -141,5 +149,3 @@
 
 
 {% endblock %}
-
-

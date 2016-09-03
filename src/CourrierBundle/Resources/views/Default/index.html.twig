@@ -3,13 +3,31 @@
 {% block body %}
 
 
+<div class="mdl-grid" id="testtoast" >
 
+    <div class="mdl-cell mdl-cell--3-col" style="text-align: center">
+        <a href="{{ path('add_courrier') }}">
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" id="child"
+                      style="width:150px; height:150px;margin-top:20px">
 
-    <div class="mdl-grid" id="testtoast" >
+                NOUVELLE RECEPTION
+            </button>
+        </a>
 
+    </div>
 
+    <div class="mdl-cell mdl-cell--3-col" style="text-align: center; ">
+        <a href="{{ path('add_message') }}">
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored child"
+                    style="width:150px; height:150px;margin-top:20px">
+                NOUVEAU MESSAGE
+            </button>
+        </a>
+    </div>
+</div>
+<div class="mdl-grid" id="testtoast" >
 
-    <div class="mdl-cell mdl-cell--6-col">
+    <div class="mdl-cell mdl-cell--8-col">
         <form>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
                 <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
@@ -145,25 +163,8 @@
 
         </div><br>
 
-        <div class="mdl-cell mdl-cell--3-col" style="text-align: center">
-            <a href="{{ path('add_courrier') }}">
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
-                        style="width:200px; height:200px; margin-top:150px">
 
-                    NOUVELLE RECEPTION
-                </button>
-            </a>
 
-        </div>
-
-        <div class="mdl-cell mdl-cell--3-col" style="text-align: center; ">
-            <a href="{{ path('add_message') }}">
-                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
-                        style="width:200px; height:200px; margin-top:150px">
-                    NOUVEAU MESSAGE
-                </button>
-            </a>
-        </div>
     </div>
 
         <div class="mdl-grid" style="margin-top:10px;">
@@ -248,12 +249,6 @@
             </div>
             {% endif %}
         </div>
-
-
-
-
-
-
 
 
 
